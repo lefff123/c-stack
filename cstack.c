@@ -38,8 +38,8 @@ hstack_t stack_new(void)
 
     if (g_table.size){
         g_table.entries = realloc(g_table.entries, sizeof(stack_entry_t)*(g_table.size+1)); // увеличиваем размер таблицы на один (ДОПИСАТЬ ПРОВЕРКУ)
-        stack_entry_t* temp = g_table.entries+g_table.size; //создаем временную переменную temp, присваиваем ей адрес нового места в таблице стеков
-        temp=new_stack;//присваем адрес нового стека новому месту в таблице
+        g_table.entries[g_table.size].reserved=0; //инициализируем новый стек
+        g_table.entries[g_table.size].stack_ptr=NULL;
         g_table.size++;// увеличиваем счетчик размера таблицы на 1
     }
     else{ if(!g_table.size){
@@ -68,7 +68,7 @@ void stack_free(const hstack_t hstack)
     
     g_table.entries[hstack].reserved=0;
     g_table.entries[hstack].stack_ptr=NULL;
-    g_table.size;
+
 
 }
 
