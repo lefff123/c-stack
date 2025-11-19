@@ -1,9 +1,6 @@
 #include "cstack.h"
-#include <stddef.h>
 #include <string.h>
 #include <stdlib.h>
-
-#define UNUSED(VAR) (void)(VAR)
 
 
 struct node { //структура элемент стека 
@@ -89,9 +86,9 @@ void stack_push(const hstack_t hstack, const void* data_in, const unsigned int s
 {
     if (g_table.size>=(unsigned)hstack&&hstack>-1){//если существует стек под таким номером
         if (data_in!=NULL&&size>0){//верные ли данные нам передали?
-            stack_piece_ptr temp = malloc(sizeof(struct node));//СДЕЛАТЬ ПРОВЕРКУ НА ВЫДЕЛЕНИЕ ПАМЯТИ
-            char * data  = malloc(size);//выделяем место под данные СДЕЛАТЬ ПРОВЕРКУ
-            memcpy(data, data_in,size); //Проверить, могу ли я вообще так копировать данные PS да, могу
+            stack_piece_ptr temp = malloc(sizeof(struct node));//выделение памяти под структуру стек
+            char * data  = malloc(size);//выделяем место под данные 
+            memcpy(data, data_in,size); //копируем данные
             temp->data=data; //записываем указатель на данные в элемент стека
             temp->bytes=size; //записываем количество байт в соответствующую полочку
 
